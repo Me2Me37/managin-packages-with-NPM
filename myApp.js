@@ -4,6 +4,7 @@ var app = express();
 var bGround = require('fcc-express-bground');
 require("dotenv").config()
 var bodyParser = require("body-parser");
+const mongoose = require('mongoose');
 
 
 app.use(function(req, res, next) {
@@ -63,5 +64,7 @@ app.get("/name", function(req, res) {
 app.post("/name", function(req, res) {
     res.json({ name: req.body.first + " " + req.body.last});
 })
+
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
  module.exports = app;
